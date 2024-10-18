@@ -1,0 +1,9 @@
+El archivo Documentos\documento.txt tiene un tamaño total de 0 bytes
+El directorio C:\PROYECTOS tiene un tamaño total de 180866294 bytes
+El directorio C:\PROYECTOS tiene un tamaño total de 180866364 bytes
+El directorio C:\PROYECTOS tiene un tamaño total de 180865760 bytes
+El directorio C:\Users\2DAM-marcosleo533\source tiene un tamaño total de 3007250 bytes
+El directorio C:\Users\2DAM-marcosleo533\source tiene un tamaño total de 518 bytes
+El directorio C:\PROYECTOS tiene un tamaño total de 5378 bytes
+El directorio C:\Users\2DAM-marcosleo533\Downloads tiene un tamaño total de 5 bytes
+El archivo C:\Users\2DAM-marcosleo533\Documents\documento.txt tiene un tamaño total de 0 bytes

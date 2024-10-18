@@ -12,7 +12,6 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class shell {
 
@@ -22,40 +21,35 @@ public class shell {
             return;
         }
 
-        // Obtener el parámetro pasado (archivo o directorio)
         String parametro = args[0];
         File file = new File(parametro);
 
-        // Verificar si es un archivo
         if (file.isFile()) {
             System.out.println("Visualizando el contenido del fichero: " + parametro);
-            ejecutarComando("more", parametro); // Usar "cat" en lugar de "more" para Linux
+            ejecutarComando("more", parametro); //
         }
-        // Verificar si es un directorio
+
         else if (file.isDirectory()) {
             System.out.println("Listando el contenido del directorio: " + parametro);
             ejecutarComando("dir", parametro);
         }
-        // En caso de que no sea ni archivo ni directorio
+
         else {
             System.out.println("Error: El parámetro no es un archivo ni un directorio válido.");
         }
     }
 
-    // Método que ejecuta un comando del sistema
     private static void ejecutarComando(String comando, String argumento) {
         ProcessBuilder builder = new ProcessBuilder();
-        // Asignar el comando y el parámetro al ProcessBuilder
+
         builder.command(comando, argumento);
 
         try {
-            // Iniciar el proceso
+
             Process process = builder.start();
 
-            // Obtener la salida del proceso y redirigirla a la consola
             process.getInputStream().transferTo(System.out);
-
-            // Esperar a que el proceso termine
+            
             int exitCode = process.waitFor();
             System.out.println("\nEl comando terminó con código de salida: " + exitCode);
         } catch (IOException | InterruptedException e) {
