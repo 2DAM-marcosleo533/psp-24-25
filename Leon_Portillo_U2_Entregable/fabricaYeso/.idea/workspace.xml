@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa6f0b8d-1c4c-439d-a76e-b38d9101d582" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/GestorTrabajo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/src/GestionTareas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/src/Jefe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/src/Trabajador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GestorTrabajo/src/Trabajo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/HiloCronometro.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HiloCronometro/src/Cronometro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/carreraRelevos.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/src/Carrera.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../carreraRelevos/src/Corredor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../psp 24-25" beforeDir="false" afterPath="$PROJECT_DIR$/../../psp 24-25" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2pX1Gk06qMlwqmuUtYGjblSu0pR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/2DAM-marcosleo533/IdeaProjects/psp-2425/U2/U2_Multihilo/fabricaYeso"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa6f0b8d-1c4c-439d-a76e-b38d9101d582" name="Changes" comment="" />
+      <created>1732897514866</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732897514866</updated>
+    </task>
+    <servers />
+  </component>
+</project>
