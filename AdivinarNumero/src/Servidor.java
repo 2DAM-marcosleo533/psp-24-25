@@ -5,73 +5,90 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Servidor {
-
-    private static final int PUERTO = 5555;
+    public static final int PUERTO = 5555;
 
     public static void main(String[] args) {
-        int intentosMax = 10;
+        int nIntentosMax = 0;
         boolean acertado = false;
-        ArrayList<Jugador> listaJugadores = new ArrayList<>(); //ALMACENO TODOS LOS JUGADORES QUE HAN ACCEDIDO
-        try {
-            Random rd = new Random();
-            int numSecreto = rd.nextInt();
-            System.out.println("El numero secreto es: " + numSecreto);
+        ArrayList<Jugador> listaJugadores = new ArrayList<>();//ALMACENO TODOS LOS JUGADORES QUE HAN ACCEDIDO
 
-            ServerSocket server = new ServerSocket(PUERTO);
-            System.out.println("Escuchando por el puerto"+PUERTO);
+        Random rd = new Random();
+        int numSecreto = rd.nextInt(0, 11);
+        System.out.println("El numero secreto es: " + numSecreto);
 
-            //CREAMOS EL SOCKET DEL CLIENTE
-            Socket clienteSocket = server.accept();
+        Socket clientSocket;
+        ServerSocket server=null;
 
-            //CREAMOS EL FLUJO DE ENTRADA (MENSAJES)
-            DataOutputStream flujoSalidaMensajes = new DataOutputStream(clienteSocket.getOutputStream());
 
-            //CREAR FUJO DE SALIDA (OBJETOS)
-            ObjectOutputStream flujoSalidaObjetos = new ObjectOutputStream((clienteSocket.getOutputStream()));
 
-            //CREAR FLUJODE ENTRADA DE MENSAJES DEL CLIENTE
-            DataInputStream flujoEntradaMensajes = new DataInputStream(clienteSocket.getInputStream());
+        while (nIntentosMax < 10 && !acertado) {
+            try {
+                server = new ServerSocket(PUERTO);
+                System.out.println("Escuchando por el puerto: " + PUERTO);
 
-            //1ª COMPROBAR SI YA EXISTE EL JUGADOR
-            String nombreJugador = flujoEntradaMensajes.readUTF();
-            Jugador j = new Jugador(nombreJugador, 0);
-            boolean existe = false;
-            for (Jugador pjAux:listaJugadores){
-                if (pjAux.getNombre().equals(j.getNombre())){
-                    j=pjAux;
-                }
-            }
-            if (!existe){
-                listaJugadores.add(j);
-            }else {
-                existe= false;
-            }
+                clientSocket = server.accept();
 
-            if (intentosMax<10 && !acertado){
-                if (j.getIntentos()<3){
-                    flujoSalidaObjetos.writeObject(new Acreditacion("Acceso concedido", true));
-                    intentosMax++;
-                    //RECOJO EL NUMERO PASADO POR EL CLIENTE
-                    String numero = flujoEntradaMensajes.readUTF();
+                //CREAMOS EL FLUJO DE SALIDA (MENSAJES)
+                DataOutputStream flujoSalidaMensajes = new DataOutputStream(clientSocket.getOutputStream());
 
-                    if (String.valueOf(numSecreto).equals(numero)){
-                        System.out.println("El jugador acerto el numero");
-                        flujoSalidaMensajes.writeUTF("HAS ACERTADO EL NUMERO: || NUMERO INTENTOS: " +intentosMax);
-                        acertado= true;
-                    } else {
-                        j.setIntentos(+1);//EN EL CASO DE QUE FALLE LE SUMO UN INTENTO
-                        if (numSecreto<Integer.valueOf(numero)){
-                            //flujoSalidaMensajes
-                        }
+                //CREAR FLUJO DE SALIDA DE (OBJETOS)
+                ObjectOutputStream flujoSalidaObjetos = new ObjectOutputStream(clientSocket.getOutputStream());
+
+                //CREAR FLUJO DE ENTRADA DE MENSAJES DEL CLIENTE
+                DataInputStream flujoEntradaMensajes = new DataInputStream(clientSocket.getInputStream());
+
+                //1ºCOMPROBAR SI YA EXISTE EL JUGADOR
+                String nombreJugador = flujoEntradaMensajes.readUTF();
+                Jugador j = new Jugador(0, "");
+                boolean existe = false;
+
+
+                for (Jugador pjAux : listaJugadores) {
+                    if (pjAux.getNombre().equals(nombreJugador)) {
+                        j = pjAux;//EN EL CASO DE QUE SEA EL JUGADOR ASIGNO A MI J ESE OBJETO
+                        existe = true;
                     }
                 }
-            } else {
-                flujoSalidaObjetos.writeObject(new Acreditacion("Scceso denegado", false));
+                if (!existe) {
+                    j.setNombre(nombreJugador);
+                    listaJugadores.add(j);
+                }
+
+                if (j.getnIntentos() < 3) {
+                    flujoSalidaObjetos.writeObject(new Acreditacion("Acceso concedido", true));
+                    nIntentosMax++;
+                    //RECOJO EL NUMERO PASDO POR EL CLIENTE
+                    String numero = flujoEntradaMensajes.readUTF();
+
+                    if (String.valueOf(numSecreto).equals(numero)) {
+                        System.out.println("El jugador ha acertado el numero");
+                        flujoSalidaMensajes.writeUTF("HAS ACERTADO EL NUMERO: || NUMERO INTENTOS: " + nIntentosMax);
+                        acertado = true;
+                        clientSocket.close();
+
+                    } else {
+                        j.setnIntentos(j.getnIntentos() + 1);//EN EL CASO DE QUE FALLE LE SUMO UN INTENTO
+                        if (numSecreto > Integer.valueOf(numero)) {
+                            flujoSalidaMensajes.writeUTF("El numero secreto es mayor");
+                        } else
+                            flujoSalidaMensajes.writeUTF("El numero secreto es menor");
+                    }
+                } else {
+                    flujoSalidaObjetos.writeObject(new Acreditacion("Acceso denegado", false));
+                }
+                clientSocket.close();
+                server.close();
+            } catch (IOException e) {
+                System.err.println(e.getLocalizedMessage());
+                try {
+                    if(server !=null){
+                        server.close();
+                    }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+
     }
 }

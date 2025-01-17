@@ -1,6 +1,15 @@
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Jugador implements Serializable {
+    private String nombre;
+    private int nIntentos;
+
+    public Jugador(int nIntentos, String nombre) {
+        this.nIntentos = nIntentos;
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -9,24 +18,11 @@ public class Jugador implements Serializable {
         this.nombre = nombre;
     }
 
-    private String nombre;
-
-    public int getIntentos() {
-        return nIntento;
+    public int getnIntentos() {
+        return nIntentos;
     }
 
-    public void setIntentos(int nIntento) {
-        this.nIntento = nIntento;
+    public void setnIntentos(int nIntentos) {
+        this.nIntentos = nIntentos;
     }
-
-    private int nIntento;
-
-    public Jugador(String nombre, int nIntento) {
-        this.nombre = nombre;
-        this.nIntento = nIntento;
-    }
-
-
-
-
 }

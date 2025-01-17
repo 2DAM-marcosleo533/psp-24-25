@@ -1,52 +1,47 @@
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class ClienteJugador {
-
     private static final int PUERTO = 5555;
     private static final String SERVER = "localhost";
-    private static int jugadas = 0;
-    private static int intentosJugador=0;
 
     public static void main(String[] args) {
-        try {
-            Scanner sc = new Scanner(System.in);
-
+        Scanner sc = new Scanner(System.in);
+        try{
             Socket clientSocket = new Socket();
-            InetSocketAddress addr = new InetSocketAddress(SERVER, PUERTO);
+            InetSocketAddress addr = new InetSocketAddress(SERVER,PUERTO);
             clientSocket.connect(addr);
 
-            ObjectInputStream flujoEntrada = new ObjectInputStream(clientSocket.getInputStream());
+            //CREAR FLUJO DE LECTURA DE MENSAJES
+            DataInputStream flujoEntradaMensajes = new DataInputStream(clientSocket.getInputStream());
 
-            Integer numero = (Integer) flujoEntrada.readObject();
-            System.out.println("CLIENTE: Recibiendo del SERVIDOR el numero: " + numero);
+            //CREAR FLUJO DE LECTURA DE OBJETOS
+            ObjectInputStream flujoEntradaObjetos = new ObjectInputStream(clientSocket.getInputStream());
 
-            while (true){
-                if (jugadas>=10){
-                    System.out.println("Se han realizado ya 10 jugadas");
-                    flujoEntrada.close();
-                    clientSocket.close();
-                }
+            //CREAR FLUJO SALIDA MENSAJES
+            DataOutputStream flujoSalida = new DataOutputStream(clientSocket.getOutputStream());
 
+            System.out.println("Introduce tu nombre:");
+            flujoSalida.writeUTF(sc.nextLine());
 
-            int numeroAd = sc.nextInt();
+            Acreditacion acreditacion = (Acreditacion) flujoEntradaObjetos.readObject();
 
-            if (numero == numeroAd){
-                System.out.println("Número adivinado");
-                flujoEntrada.close();
-                clientSocket.close();
+            if(acreditacion.isFlag()){
+                System.out.println(acreditacion);
+                System.out.println("Introduce el numero secreto:");
+                flujoSalida.writeUTF(sc.nextLine());
+                //LEO SI SE HA ACERTADO El NUMERO
+                System.out.println(flujoEntradaMensajes.readUTF());
             }
-
-            jugadas++;
+            else {
+                System.out.println(acreditacion);
             }
-
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
-            System.out.println("No se ha podido realizar la conversión del objeto");
+            throw new RuntimeException(e);
         }
     }
 }
